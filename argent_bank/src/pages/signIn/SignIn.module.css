@@ -1,0 +1,46 @@
+.main {
+  background-color: #12002b;
+  width:100%;
+  padding-top: 3rem;
+}
+
+.signin {
+  background-color: white;
+  width:240px;
+  padding:2rem;
+  margin:0 auto;
+  text-align:center;
+}
+
+.signin>h1 {
+  font-size: 1.5rem;
+}
+
+.formWrapper{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.formWrapper>input {
+  padding:5px;
+  font-size: 1.2rem;
+}
+
+.formRemember {
+  text-align: left;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  border-style: none;
+}
