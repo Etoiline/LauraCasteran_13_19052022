@@ -13,6 +13,7 @@ import Features from '../../component/features/Features'
          *    
          */
 function Home(props) {
+  //console.log(process.env.REACT_APP_PORT)
   
     return (
       <div className={home.header}>
