@@ -2,11 +2,12 @@ import header from './Header.module.css'
 import propTypes from 'prop-types'
 import bankLogo from '../../assets/argentBankLogo.png'
 import { Link } from 'react-router-dom'
-import { useProfileApi } from '../../services/useProfileApi'
 import { useEffect, useState } from "react"
 import { userLogoff } from '../../features/login/loginSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
+import { userProfile } from '../../features/profile/profileSlice'
 
 /**
          * HeaderLogged component
@@ -20,17 +21,45 @@ function HeaderLogged(props) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { loadingProfile, dataProfile, errorProfile } = useProfileApi (localStorage.getItem('tokenSessionBank_'))
   
   const [firstName, setfirstName] = useState([])
+  const token = localStorage.getItem('tokenSessionBank_')
 
 
-  useEffect(() => {
-    if (loadingProfile === false) {
-      setfirstName(dataProfile.data)
-      console.log("dataprofile", dataProfile)
+
+  async function ProfileProcess(e){
+    const configAxios = {
+      headers:{
+      'accept':'application/json',
+      'Authorization':'Bearer '+token
     }
-  }, [loadingProfile, dataProfile])
+  }
+
+      console.log('headers profile',configAxios)
+    try {
+      const response = await axios.post('http://localhost:3001/api/v1/user/profile', {configAxios})
+      let data = response.data
+      console.log('data', data, data.status)
+      if (data.status===200){
+        console.log('ok')
+        console.log(data.body.token)
+        dispatch(userProfile())
+      }
+      else {
+        console.log('pas ok')
+        
+      }
+      
+    } catch (err) {
+      console.log('errrrr',err)
+  
+    }
+
+
+
+  }
+
+  ProfileProcess()
 
 
 
