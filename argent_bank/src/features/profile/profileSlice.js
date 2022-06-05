@@ -18,6 +18,7 @@ export const profileSlice = createSlice({
   reducers: {
     userProfile: (state, action) => {
       const data = action.payload
+      console.log('dataslice', action)
       state.email = data.email
       state.firstName = data.firstName
       state.lastName = data.lastName

@@ -1,5 +1,7 @@
 import dashboard from './Dashboard.module.css'
 import propTypes from 'prop-types'
+import Accounts from '../../component/accounts/Accounts'
+import DashboardHeader from '../../component/dashboardHeader/DashboardHeader'
 
 
 
@@ -15,7 +17,8 @@ function Dashboard(props) {
   
     return (
       <div className={dashboard.header}>
-        WELCOME ON DASHBOARD
+        <DashboardHeader />
+        <Accounts />
       </div>
     )
   }

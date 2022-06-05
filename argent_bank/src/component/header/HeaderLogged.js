@@ -21,13 +21,12 @@ function HeaderLogged(props) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  
-  const [firstName, setfirstName] = useState([])
   const token = localStorage.getItem('tokenSessionBank_')
 
 
 
   async function ProfileProcess(e){
+    const dataRequest = {}
     const configAxios = {
       headers:{
       'accept':'application/json',
@@ -37,13 +36,12 @@ function HeaderLogged(props) {
 
       console.log('headers profile',configAxios)
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/user/profile', {configAxios})
+      const response = await axios.post('http://localhost:3001/api/v1/user/profile',dataRequest, configAxios)
       let data = response.data
-      console.log('data', data, data.status)
       if (data.status===200){
         console.log('ok')
-        console.log(data.body.token)
-        dispatch(userProfile())
+        console.log(data.body)
+        dispatch(userProfile(data.body))
       }
       else {
         console.log('pas ok')
@@ -60,6 +58,8 @@ function HeaderLogged(props) {
   }
 
   ProfileProcess()
+  const name = useSelector((state)=>state.profile.firstName)
+  console.log('name',name)
 
 
 
@@ -77,7 +77,7 @@ function HeaderLogged(props) {
         <Link to={'./'}><img src={bankLogo} alt="Bank logo" className={header.header__logo}/></Link>
         <div className={header.logged}>
         <div className={header.logged__user}><i className="fa fa-user-circle"></i>
-        <p>NOM</p></div>
+        <p>{name}</p></div>
           <div onClick={Logout} className={header.signout}>
           <i className="fa fa-sign-out"></i>
             Sign Out
