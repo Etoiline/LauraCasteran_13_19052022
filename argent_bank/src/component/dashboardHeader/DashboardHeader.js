@@ -1,5 +1,4 @@
 import dashboardHeader from './DashboardHeader.module.css'
-import propTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
 
@@ -8,15 +7,19 @@ import { useSelector } from 'react-redux'
 /**
          * DashboardHeader component
          * 
-         * @param props 
          * 
          * @return dashboardHeader component
          *    
          */
-function DashboardHeader(props) {
+function DashboardHeader() {
 
   const name = useSelector((state)=>state.profile.firstName)
   const lastname = useSelector((state)=>state.profile.lastName)
+
+  function editProfile() {
+    console.log('editProfile')
+
+  }
 
 
   
@@ -24,13 +27,11 @@ function DashboardHeader(props) {
       <div className={dashboardHeader.header}>
         <h1>Welcome back <br />
         {name} {lastname} !</h1>
+        <button className={dashboardHeader.button} onClick={editProfile}>Edit Name</button>
 
       </div>
     )
   }
 
-  DashboardHeader.propTypes = {
-
-  }
 
 export default DashboardHeader

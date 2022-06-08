@@ -8,6 +8,8 @@ import './index.css';
 import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/home/Home';
 import SignIn from './pages/signIn/SignIn';
+import CheckLogin from './component/checkLogState/CheckLogin'
+import CheckLogoff from './component/checkLogState/CheckLogoff';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -19,11 +21,8 @@ root.render(
       <Routes>
       <Route path="/" element={<Template />}>
         <Route index element={<Home />} />
-        <Route path ='/sign-in' element= {<SignIn />} />
-        <Route path ='/dashboard' element= {<Dashboard />} />
-        {/* <Route path ='*' element= {<Error />} />
-        <Route path ='/about' element= {<APropos />} />
-        <Route path="/logement/:idLogement" element={<Logement />} /> */}
+        <Route path ='/sign-in' element= {<CheckLogoff><SignIn /></CheckLogoff>} />
+        <Route path ='/dashboard' element= {<CheckLogin><Dashboard /></CheckLogin>} />
       </Route>
       </Routes>
     </Router>

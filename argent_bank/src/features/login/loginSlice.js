@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { isLogged } from './login'
+import { setToken } from '../../config/tokenManager'
 
 const initialState = {
-  isLoggedBool: {isLogged},
+  isLoggedBool: isLogged(),
 }
 
 
@@ -13,13 +14,14 @@ export const loginSlice = createSlice({
   reducers: {
     userLogin: (state, action) => {
       state.isLoggedBool=true
-      console.log('payload',action)
-      localStorage.setItem('tokenSessionBank_', action.payload)
-      console.log('localStorage' ,localStorage.getItem('tokenSessionBank_'))
+      //console.log('payload',action)
+      setToken (action.payload)
+      //localStorage.setItem('tokenSessionBank_', action.payload)
+      //console.log('localStorage' ,localStorage.getItem('tokenSessionBank_'))
     },
     userLogoff: (state) => {
       state.isLoggedBool = false
-      localStorage.setItem('tokenSessionBank_', '')
+      setToken('')
     }
   },
 })
