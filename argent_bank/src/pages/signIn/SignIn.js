@@ -3,9 +3,9 @@ import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { userLogin } from '../../features/login/loginSlice'
 import { useDispatch } from 'react-redux'
-import instanceAxios from '../../config/axiosConfig'
-import { useProfile } from '../../config/getProfile'
-import { useLoginProcess } from '../../config/loginProcess'
+import { getProfile } from '../../config/getProfile'
+import { userProfile } from '../../features/profile/profileSlice'
+import { LoginProcess } from '../../config/loginProcess'
 import { Link } from 'react-router-dom'
 
 
@@ -24,63 +24,34 @@ function SignIn() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
-  const {loginUser}= useLoginProcess(username, password);
-  
-  // function LoginProcessClic(e){
-  //   e.preventDefault()
-  //   const {loadingLogin, dataLogin, errorLogin} = useLoginProcess(username,password)
-  //     if (loadingLogin===false) {
-  //       console.log('loginprocess', loadingLogin)
-  //       if (errorLogin){
-          
-  //       }
-  //       else {
-  //         dispatch(userLogin(dataLogin))
-  //         navigate('/dashboard')
-  //       }
-  //     }
-  //     return <SignIn />
-  // }
 
 
 
-  // async function LoginProcess(e){
-  //   e.preventDefault()
-  //   const logInfo = {
-  //     email: username,
-  //     password: password
-  //   }
-  //   const headers = {
-  //     'accept':'application/json',
-  //     'Content-Type':'application/json'
-  //   }
-  //   try {
-  //     const response = await instanceAxios.post('user/login', logInfo, {headers})
-  //     let data = response.data
-  //     console.log('data', data, data.status)
-  //     if (data.status===200){
-  //       // console.log('ok')
-  //       // console.log(data.body.token)
-  //       dispatch(userLogin(data.body.token))
+  async function LoginProcessForm(e){
+    e.preventDefault()
+    try {
+      const response = await LoginProcess(username,password)
+      let data = response.data
+      console.log('data', data, data.status)
+      if (data.status===200){
+        // console.log('ok')
+        // console.log(data.body.token)
+        dispatch(userLogin(data.body.token))
+        const responseProfile = await getProfile()
+        dispatch(userProfile(responseProfile.data.body))
 
-  //       navigate('/dashboard')
-  //     }
+        navigate('/dashboard')
+      }
       
-  //   } catch (err) {
-  //     console.log('error get login infos',err)
+    } catch (err) {
+      console.log('error get login infos',err)
   
-  //   }
-  //   const {a,b,c}= useProfile()
-  //   //return <SignIn />
+    }
+
+    return <SignIn />
 
 
-  // }
-
-  const handleLogout = (e) =>
-  {
-      if(e) e.preventDefault();
-
-  };
+  }
  
 
     return (
@@ -88,7 +59,7 @@ function SignIn() {
     <div className={signin.signin}>
     <i className="fa fa-user-circle"></i>
     <h1>Sign in</h1>
-    <form onSubmit={function(){ loginUser(); handleLogout()}}>
+    <form>
       <div className={signin.formWrapper}>
         <label htmlFor='username'>Username</label>
         <input id='username' type='text' value={username} onChange={(e)=>{setUsername(e.target.value)}} />
@@ -101,7 +72,7 @@ function SignIn() {
       <input id='remember-me' type='checkbox' checked={remember} onChange={(e)=>{setRemember(e.target.checked)}} />
         <label htmlFor='checkbox'>Remember me</label>
       </div>
-      <button className={signin.button} type='submit'>Sign In</button>
+      <button className={signin.button} onClick={LoginProcessForm}>Sign In</button>
     </form>
 
     </div>
