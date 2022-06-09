@@ -5,7 +5,7 @@ import { userLogin } from '../../features/login/loginSlice'
 import { useDispatch } from 'react-redux'
 import instanceAxios from '../../config/axiosConfig'
 import { useProfile } from '../../config/getProfile'
-import { LoginProcess } from '../../config/loginProcess'
+import { useLoginProcess } from '../../config/loginProcess'
 import { Link } from 'react-router-dom'
 
 
@@ -24,19 +24,21 @@ function SignIn() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
-
-  function LoginProcess(e){
-    //e.preventDefault()
-    const {loadingLogin, errorLogin} = LoginProcess(username,password)
+  
+  function LoginProcessClic(e){
+    e.preventDefault()
+    const {loadingLogin, dataLogin, errorLogin} = useLoginProcess(username,password)
       if (loadingLogin===false) {
         console.log('loginprocess', loadingLogin)
         if (errorLogin){
-          return <SignIn />
+          
         }
         else {
-          <Link to={'/dashboard'} />
+          dispatch(userLogin(dataLogin))
+          navigate('/dashboard')
         }
       }
+      return <SignIn />
   }
 
 
@@ -94,7 +96,7 @@ function SignIn() {
       <input id='remember-me' type='checkbox' checked={remember} onChange={(e)=>{setRemember(e.target.checked)}} />
         <label htmlFor='checkbox'>Remember me</label>
       </div>
-      <button className={signin.button} onClick={LoginProcess}>Sign In</button>
+      <button className={signin.button} onClick={LoginProcessClic} type='submit'>Sign In</button>
     </form>
 
     </div>
