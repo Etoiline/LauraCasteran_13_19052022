@@ -1,5 +1,8 @@
 import instanceAxios from "./axiosConfig"
 import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { userLogin } from "../features/login/loginSlice"
+import { useNavigate } from "react-router-dom"
 
 export const useLoginProcess = (username, password) => {
   const logInfo = {
@@ -15,15 +18,20 @@ export const useLoginProcess = (username, password) => {
   const [errorLogin, setErrorLogin] = useState(undefined)
   console.log('useLogin')
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
 
     useEffect(()=> {
       const load = async () => {
         try {
           const response = await instanceAxios.post('user/login', logInfo, {headers})
           let data = response.data
+          console.log('useLogin', data)
           setDataLogin(data.body.token)
           setLoadingLogin(false)
-          //dispatch(userLogin(data.body.token))
+          dispatch(userLogin(data.body.token))
+          navigate('/dashboard')
           
         } catch (err) {
           setErrorLogin(err)

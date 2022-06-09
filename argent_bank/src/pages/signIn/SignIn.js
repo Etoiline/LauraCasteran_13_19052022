@@ -24,22 +24,23 @@ function SignIn() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
+  const {loginUser}= useLoginProcess(username, password);
   
-  function LoginProcessClic(e){
-    e.preventDefault()
-    const {loadingLogin, dataLogin, errorLogin} = useLoginProcess(username,password)
-      if (loadingLogin===false) {
-        console.log('loginprocess', loadingLogin)
-        if (errorLogin){
+  // function LoginProcessClic(e){
+  //   e.preventDefault()
+  //   const {loadingLogin, dataLogin, errorLogin} = useLoginProcess(username,password)
+  //     if (loadingLogin===false) {
+  //       console.log('loginprocess', loadingLogin)
+  //       if (errorLogin){
           
-        }
-        else {
-          dispatch(userLogin(dataLogin))
-          navigate('/dashboard')
-        }
-      }
-      return <SignIn />
-  }
+  //       }
+  //       else {
+  //         dispatch(userLogin(dataLogin))
+  //         navigate('/dashboard')
+  //       }
+  //     }
+  //     return <SignIn />
+  // }
 
 
 
@@ -75,7 +76,11 @@ function SignIn() {
 
   // }
 
- 
+  const handleLogout = (e) =>
+  {
+      if(e) e.preventDefault();
+
+  };
  
 
     return (
@@ -83,7 +88,7 @@ function SignIn() {
     <div className={signin.signin}>
     <i className="fa fa-user-circle"></i>
     <h1>Sign in</h1>
-    <form>
+    <form onSubmit={function(){ loginUser(); handleLogout()}}>
       <div className={signin.formWrapper}>
         <label htmlFor='username'>Username</label>
         <input id='username' type='text' value={username} onChange={(e)=>{setUsername(e.target.value)}} />
@@ -96,7 +101,7 @@ function SignIn() {
       <input id='remember-me' type='checkbox' checked={remember} onChange={(e)=>{setRemember(e.target.checked)}} />
         <label htmlFor='checkbox'>Remember me</label>
       </div>
-      <button className={signin.button} onClick={LoginProcessClic} type='submit'>Sign In</button>
+      <button className={signin.button} type='submit'>Sign In</button>
     </form>
 
     </div>
