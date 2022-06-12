@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux'
 import { getProfile } from '../../config/getProfile'
 import { userProfile } from '../../features/profile/profileSlice'
 import { LoginProcess } from '../../config/loginProcess'
-import { Link } from 'react-router-dom'
 
 
         /**
@@ -34,8 +33,6 @@ function SignIn() {
       let data = response.data
       console.log('data', data, data.status)
       if (data.status===200){
-        // console.log('ok')
-        // console.log(data.body.token)
         dispatch(userLogin(data.body.token))
         const responseProfile = await getProfile()
         dispatch(userProfile(responseProfile.data.body))

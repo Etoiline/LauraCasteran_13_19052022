@@ -1,16 +1,30 @@
 .header {
   padding-top: 5px;
   padding-bottom: 2rem;
+  text-align: center;
 }
 
 .header>h1 {
   text-align: center;
 }
 
-.button {
-    display: block;
-    padding: 8px;
-    margin:auto;
+.formWrappers {
+  display: flex;
+  justify-content: center;
+}
+
+.formWrapper{
+  margin: 3px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.formButton {
+  padding: 8px;
+    margin:3px;
     font-weight: bold;
     margin-top: 1rem;
     border-color: #00bc77;

@@ -25,11 +25,15 @@ export const profileSlice = createSlice({
       state.createdAt = data.createdAt
       state.updatedAt = data.updatedAt
       state.id = data.id
+    },
+    setNames:(state, dataNames) => {
+      state.firstName = dataNames.firstName
+      state.lastName = dataNames.lastName
     }
   },
 })
 
 // Export everything
-export const { userProfile } = profileSlice.actions
+export const { userProfile, setNames } = profileSlice.actions
 export default profileSlice.reducer
 
