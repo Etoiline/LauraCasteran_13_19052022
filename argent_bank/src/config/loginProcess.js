@@ -1,6 +1,11 @@
 import instanceAxios from "./axiosConfig"
 
-
+/**
+ * 
+ * @param username : nom d'utilisateur 
+ * @param password : mot de passe 
+ * @returns la réponse de l'instance axios
+ */
 export const LoginProcess = (username, password) => {
   const logInfo = {
     email: username,

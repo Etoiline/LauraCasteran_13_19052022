@@ -61,10 +61,10 @@ function DashboardHeader() {
       <form className={dashboardHeader.form}>
         <div className={dashboardHeader.formWrappers}>
           <div className={dashboardHeader.formWrapper}>
-            <input id='username' type='text' value={name} onChange={(e)=>{setUsername(e.target.value)}} />
+            <input id='username' type='text' placeholder={name} onChange={(e)=>{setUsername(e.target.value)}} />
           </div>
           <div className={dashboardHeader.formWrapper}>
-            <input id='userLastName' type='text' value={lastname} onChange={(e)=>{setUserLastName(e.target.value)}} />
+            <input id='userLastName' type='text' placeholder={lastname} onChange={(e)=>{setUserLastName(e.target.value)}} />
           </div>
         </div>
         <div className={dashboardHeader.formButtons}>

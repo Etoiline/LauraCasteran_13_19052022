@@ -1,5 +1,4 @@
 import home from './Home.module.css'
-import propTypes from 'prop-types'
 import Hero from '../../component/hero/Hero'
 import Features from '../../component/features/Features'
 
@@ -7,12 +6,11 @@ import Features from '../../component/features/Features'
 /**
          * Home component
          * 
-         * @param props 
          * 
          * @return home component
          *    
          */
-function Home(props) {
+function Home() {
   //console.log(process.env.REACT_APP_PORT)
   
     return (
@@ -23,8 +21,5 @@ function Home(props) {
     )
   }
 
-  Home.propTypes = {
-
-  }
 
 export default Home

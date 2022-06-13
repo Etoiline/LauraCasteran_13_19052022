@@ -1,12 +1,14 @@
 import accounts from './Accounts.module.css'
-import propTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
 
 
 /**
          * Account component
          * 
-         * @param props 
+         * @param props.name nom du compte
+         * @param props.balance balance du compte
+         * @param props.description description du compte
          * 
          * @return account component
          *    
@@ -28,6 +30,9 @@ function Account(props) {
   }
 
   Account.propTypes = {
+    name : PropTypes.string,
+    balance : PropTypes.string,
+    description :PropTypes.string,
 
   }
 

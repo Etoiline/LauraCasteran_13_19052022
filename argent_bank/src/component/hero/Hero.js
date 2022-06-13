@@ -1,16 +1,14 @@
 import hero from './Hero.module.css'
-import propTypes from 'prop-types'
 import banktree from '../../assets/bank-tree.jpeg'
 
 /**
          * Hero component
          * 
-         * @param props 
          * 
          * @return hero component
          *    
          */
-function Hero(props) {
+function Hero() {
   
     return (
       <div className={hero.main}>
@@ -28,8 +26,5 @@ function Hero(props) {
     )
   }
 
-  Hero.propTypes = {
-
-  }
 
 export default Hero

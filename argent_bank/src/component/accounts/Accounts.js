@@ -1,6 +1,4 @@
 import accounts from './Accounts.module.css'
-import propTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import Account from './Account'
 
 
@@ -15,14 +13,13 @@ import Account from './Account'
 /**
          * Accounts component
          * 
-         * @param props 
          * 
          * @return accounts component
          *    
          */
 
 
-function Accounts(props) {
+function Accounts() {
   
     return (
       <div className={accounts.all}>
@@ -35,10 +32,6 @@ function Accounts(props) {
       ))}
       </div>
     )
-  }
-
-  Accounts.propTypes = {
-
   }
 
 export default Accounts

@@ -7,7 +7,6 @@ import { userLogoff } from '../../features/login/loginSlice'
 /**
          * Header component
          * 
-         * @param props 
          * 
          * @return header component
          *    

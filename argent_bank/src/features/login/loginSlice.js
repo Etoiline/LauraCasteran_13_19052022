@@ -7,7 +7,9 @@ const initialState = {
 }
 
 
-
+/**
+ * fonction gérant la mise à jour du store à la connexion et la deconnexion
+ */
 export const loginSlice = createSlice({
   name: 'login',
   initialState,

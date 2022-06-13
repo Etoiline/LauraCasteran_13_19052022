@@ -1,5 +1,4 @@
 import features from './Features.module.css'
-import propTypes from 'prop-types'
 import FeatureItem from './FeatureItem'
 import iconChat from '../../assets/icon-chat.png'
 import iconMoney from '../../assets/icon-money.png'
@@ -25,12 +24,11 @@ const featuresContent = [{
 /**
          * Features component
          * 
-         * @param props 
          * 
          * @return features component
          *    
          */
-function Features(props) {
+function Features() {
   return (
     <div className={features.main}>
     {featuresContent.map(element=> <FeatureItem item={element} />)}
@@ -40,8 +38,5 @@ function Features(props) {
     
   }
 
-  Features.propTypes = {
-
-  }
 
 export default Features
