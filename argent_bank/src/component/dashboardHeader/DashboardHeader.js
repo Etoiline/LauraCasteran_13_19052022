@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux'
 import { userProfile } from '../../features/profile/profileSlice'
 import { setProfile } from '../../config/setProfile'
 import { getProfile } from '../../config/getProfile'
+import { getFirstName } from '../../config/profileManager'
+import { getLastName } from '../../config/profileManager'
 
 /**
          * DashboardHeader component
@@ -16,8 +18,11 @@ import { getProfile } from '../../config/getProfile'
 function DashboardHeader() {
   const dispatch = useDispatch()
 
-  const name = useSelector((state)=>state.profile.firstName)
-  const lastname = useSelector((state)=>state.profile.lastName)
+  // const name = useSelector((state)=>state.profile.firstName)
+  // const lastname = useSelector((state)=>state.profile.lastName)
+  const name = getFirstName()
+  const lastname = getLastName()
+  console.log('name dash header', name, lastname)
 
   const [username, setUsername] = useState('')
   const [userLastName, setUserLastName] = useState('')

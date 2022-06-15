@@ -13,7 +13,6 @@ export async function getProfile() {
     'Authorization':'Bearer '+getToken()
     }
   }
-  console.log('instnce', instanceAxios)
 
       return instanceAxios.post('user/profile',dataRequest, configAxios)
 

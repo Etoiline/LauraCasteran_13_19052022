@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import { setFirstName } from '../../config/profileManager'
+import { setLastName } from '../../config/profileManager'
 
 const initialState = {
   email: "",
@@ -21,12 +22,15 @@ export const profileSlice = createSlice({
     userProfile: (state, action) => {
       const data = action.payload
       //console.log('dataslice', action)
+      setFirstName(data.firstName)
+      setLastName(data.lastName)
       state.email = data.email
       state.firstName = data.firstName
       state.lastName = data.lastName
       state.createdAt = data.createdAt
       state.updatedAt = data.updatedAt
       state.id = data.id
+      
     },
   },
 })

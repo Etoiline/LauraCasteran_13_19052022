@@ -31,7 +31,7 @@ function SignIn() {
     try {
       const response = await LoginProcess(username,password)
       let data = response.data
-      console.log('data', data, data.status)
+      //console.log('data', data, data.status)
       if (data.status===200){
         dispatch(userLogin(data.body.token))
         const responseProfile = await getProfile()

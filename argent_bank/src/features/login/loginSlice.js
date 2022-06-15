@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { isLogged } from './login'
 import { setToken } from '../../config/tokenManager'
+import { setFirstName } from '../../config/profileManager'
+import { setLastName } from '../../config/profileManager'
 
 const initialState = {
   isLoggedBool: isLogged(),
@@ -24,6 +26,8 @@ export const loginSlice = createSlice({
     userLogoff: (state) => {
       state.isLoggedBool = false
       setToken('')
+      setFirstName('')
+      setLastName('')
     }
   },
 })
