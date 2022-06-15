@@ -17,11 +17,11 @@ function Header() {
   const dispatch = useDispatch()
 
   const logged = useSelector((state)=>state.login.isLoggedBool)
-  //const name = useSelector((state)=>state.profile.firstName)
-  let name
-  if (logged){
-    name = getFirstName()
-  }
+  const name = useSelector((state)=>state.profile.firstName)
+  // let name
+  // if (logged){
+  //   name = getFirstName()
+  // }
 
   function Logout () {
     

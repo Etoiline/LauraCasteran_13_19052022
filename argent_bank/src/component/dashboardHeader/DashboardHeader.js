@@ -18,11 +18,8 @@ import { getLastName } from '../../config/profileManager'
 function DashboardHeader() {
   const dispatch = useDispatch()
 
-  // const name = useSelector((state)=>state.profile.firstName)
-  // const lastname = useSelector((state)=>state.profile.lastName)
-  const name = getFirstName()
-  const lastname = getLastName()
-  console.log('name dash header', name, lastname)
+  const name = useSelector((state)=>state.profile.firstName)
+  const lastname = useSelector((state)=>state.profile.lastName)
 
   const [username, setUsername] = useState('')
   const [userLastName, setUserLastName] = useState('')
