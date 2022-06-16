@@ -13,7 +13,6 @@ export async function setProfile(firstname, lastname) {
     lastName:lastname}
   const configAxios = {
     headers:{
-    'accept':'application/json',
     'Authorization':'Bearer '+getToken()
     }
   }

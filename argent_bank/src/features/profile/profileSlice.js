@@ -3,8 +3,8 @@ import { setFirstName, setLastName, getFirstName, getLastName } from '../../conf
 
 const initialState = {
   email: "",
-  firstName: "",
-  lastName: "",
+  firstName: getFirstName(),
+  lastName: getLastName(),
   createdAt: "",
   updatedAt: "",
   id: ""

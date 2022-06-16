@@ -28,7 +28,6 @@ function DashboardHeader() {
 
   function editProfile() {
     setEditingProfile (true)
-    console.log('editProfile')
 
   }
 
@@ -38,14 +37,25 @@ function DashboardHeader() {
 
   async function saveEditProfile(e) {
     e.preventDefault()
-    console.log('before',name, lastname)
+    console.log('before',username, userLastName, getFirstName(),getLastName())
     //dispatch(setNames({firstName:username, lastName:userLastName}))
-    setProfile(username, userLastName)
-    const responseProfile = await getProfile()
-    dispatch(userProfile(responseProfile.data.body))
-    setEditingProfile (false)
-    //window.location.reload()
-    console.log(name, lastname)
+    if (username===''){
+      setUsername(getFirstName())
+    }
+    if (userLastName===''){
+      console.log('pas de nom de famille')
+      setUserLastName(getLastName())
+    }
+    console.log('after', username, userLastName)
+    const responseSetProfile = await setProfile(username, userLastName)
+    if (responseSetProfile.status===200){
+      const responseProfile = await getProfile()
+      console.log('http', responseProfile.data.body)
+      dispatch(userProfile(responseProfile.data.body))
+      setEditingProfile (false)
+      //window.location.reload()
+  }
+
   }
   
     return (
