@@ -111,7 +111,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/transactions:
-    post:
+    get:
       tags:
       - User Transactions
       summary: Fetch all transactions
@@ -132,7 +132,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/transactions/{id}:    
-    post:
+    get:
       tags:
       - User Transactions
       summary: fetch a single transaction
@@ -186,6 +186,35 @@ paths:
       responses:
         '200':
           description: Transaction updated successully
+          schema:
+            $ref: "#/definitions/Transaction"
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    delete:
+      security:
+        - Bearer: []
+      tags:
+      - User Transactions
+      summary: Delete an existing transaction
+      description: Change status of an existing transaction, status is 'deleted'
+      parameters:
+      - in: header
+        name: Authorization
+        description: Attach Bearer JWT
+        type: string
+        required: true
+      - in: path
+        name: id
+        description: The id of transaction that needs to be deleted
+        required: true
+        type: integer  
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction delete successully
           schema:
             $ref: "#/definitions/Transaction"
         '400':
@@ -265,4 +294,8 @@ definitions:
       Category:
         type: string
       Notes:
+        type: string
+      Status:
+        type: string
+      other_transaction_part:
         type: string
