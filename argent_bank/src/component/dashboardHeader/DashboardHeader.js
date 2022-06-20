@@ -1,12 +1,10 @@
 import dashboardHeader from './DashboardHeader.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { userProfile } from '../../features/profile/profileSlice'
 import { setProfile } from '../../config/setProfile'
 import { getProfile } from '../../config/getProfile'
-import { getFirstName } from '../../config/profileManager'
-import { getLastName } from '../../config/profileManager'
+import { getFirstName, getLastName } from '../../config/profileManager'
 
 /**
          * DashboardHeader component

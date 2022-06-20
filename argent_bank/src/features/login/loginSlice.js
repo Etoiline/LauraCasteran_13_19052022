@@ -18,10 +18,7 @@ export const loginSlice = createSlice({
   reducers: {
     userLogin: (state, action) => {
       state.isLoggedBool=true
-      //console.log('payload',action)
       setToken (action.payload)
-      //localStorage.setItem('tokenSessionBank_', action.payload)
-      //console.log('localStorage' ,localStorage.getItem('tokenSessionBank_'))
     },
     userLogoff: (state) => {
       state.isLoggedBool = false
