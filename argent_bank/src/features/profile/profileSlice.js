@@ -20,6 +20,7 @@ export const profileSlice = createSlice({
   reducers: {
     userProfile: (state, action) => {
       const data = action.payload
+      console.log(data)
       //console.log('dataslice', action)
       setFirstName(data.firstName)
       setLastName(data.lastName)

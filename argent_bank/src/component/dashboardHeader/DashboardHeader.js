@@ -1,6 +1,6 @@
 import dashboardHeader from './DashboardHeader.module.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { userProfile } from '../../features/profile/profileSlice'
 import { setProfile } from '../../config/setProfile'
 import { getProfile } from '../../config/getProfile'
@@ -19,8 +19,10 @@ function DashboardHeader() {
   const name = useSelector((state)=>state.profile.firstName)
   const lastname = useSelector((state)=>state.profile.lastName)
 
-  const [username, setUsername] = useState('')
-  const [userLastName, setUserLastName] = useState('')
+  // const [username, setUsername] = useState(name)
+  //const [userLastName, setUserLastName] = useState(lastname)
+  const usernameInput = useRef()
+  const userLastNameInput = useRef()
 
   const [editingProfile, setEditingProfile] = useState(false)
 
@@ -35,16 +37,18 @@ function DashboardHeader() {
 
   async function saveEditProfile(e) {
     e.preventDefault()
-    console.log('before',username, userLastName, getFirstName(),getLastName())
+    const username=usernameInput.current.value||name
+    const userLastName = userLastNameInput.current.value||lastname
+    //console.log('before',username, userLastName, getFirstName(),getLastName())
     //dispatch(setNames({firstName:username, lastName:userLastName}))
-    if (username===''){
-      setUsername(getFirstName())
-    }
-    if (userLastName===''){
-      console.log('pas de nom de famille')
-      setUserLastName(getLastName())
-    }
-    console.log('after', username, userLastName)
+    // if (username===''){
+    //   setUsername(name)
+    // }
+    // if (userLastName===''){
+    //   console.log('pas de nom de famille')
+    //   setUserLastName(lastname)
+    // }
+    //console.log('after', username, userLastName)
     const responseSetProfile = await setProfile(username, userLastName)
     if (responseSetProfile.status===200){
       const responseProfile = await getProfile()
@@ -71,10 +75,10 @@ function DashboardHeader() {
       <form className={dashboardHeader.form}>
         <div className={dashboardHeader.formWrappers}>
           <div className={dashboardHeader.formWrapper}>
-            <input id='username' type='text' placeholder={name} onChange={(e)=>{setUsername(e.target.value)}} />
+            <input id='username' type='text' placeholder={name} ref={usernameInput} />
           </div>
           <div className={dashboardHeader.formWrapper}>
-            <input id='userLastName' type='text' placeholder={lastname} onChange={(e)=>{setUserLastName(e.target.value)}} />
+            <input id='userLastName' type='text' placeholder={lastname} ref={userLastNameInput} />
           </div>
         </div>
         <div className={dashboardHeader.formButtons}>

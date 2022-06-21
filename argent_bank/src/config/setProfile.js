@@ -8,6 +8,7 @@ import instanceAxios from "./axiosConfig"
  * @returns le retour de l'instance axios
  */
 export async function setProfile(firstname, lastname) {
+  console.log(firstname, lastname)
   const dataRequest = {
     firstName:firstname, 
     lastName:lastname}

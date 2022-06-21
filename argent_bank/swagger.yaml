@@ -157,6 +157,36 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+    post:
+      security:
+        - Bearer: []
+      tags:
+      - User Transactions
+      summary: Add a new transaction
+      description: Adding a new transaction
+      parameters:
+      - in: header
+        name: Authorization
+        description: Attach Bearer JWT
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: Transaction attributes
+        required: true
+        schema:
+          $ref: "#/definitions/Transaction"
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction added successully
+          schema:
+            $ref: "#/definitions/Transaction"
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
     put:
       security:
         - Bearer: []
@@ -279,7 +309,9 @@ definitions:
     type: object
     properties:
       transactions:
-        type: object
+        type: array
+        items:
+          $ref: '#/definitions/Transaction'
   Transaction:
     type: object
     properties:
@@ -297,5 +329,7 @@ definitions:
         type: string
       Status:
         type: string
-      other_transaction_part:
-        type: string
+      sender:
+        $ref: '#/definitions/User'
+      reciever:
+        $ref: '#/definitions/User'
