@@ -4,7 +4,6 @@ import { useRef, useState } from 'react'
 import { userProfile } from '../../features/profile/profileSlice'
 import { setProfile } from '../../config/setProfile'
 import { getProfile } from '../../config/getProfile'
-import { getFirstName, getLastName } from '../../config/profileManager'
 
 /**
          * DashboardHeader component
@@ -39,23 +38,11 @@ function DashboardHeader() {
     e.preventDefault()
     const username=usernameInput.current.value||name
     const userLastName = userLastNameInput.current.value||lastname
-    //console.log('before',username, userLastName, getFirstName(),getLastName())
-    //dispatch(setNames({firstName:username, lastName:userLastName}))
-    // if (username===''){
-    //   setUsername(name)
-    // }
-    // if (userLastName===''){
-    //   console.log('pas de nom de famille')
-    //   setUserLastName(lastname)
-    // }
-    //console.log('after', username, userLastName)
     const responseSetProfile = await setProfile(username, userLastName)
     if (responseSetProfile.status===200){
       const responseProfile = await getProfile()
-      console.log('http', responseProfile.data.body)
       dispatch(userProfile(responseProfile.data.body))
       setEditingProfile (false)
-      //window.location.reload()
   }
 
   }

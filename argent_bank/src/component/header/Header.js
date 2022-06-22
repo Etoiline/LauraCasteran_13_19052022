@@ -3,8 +3,6 @@ import bankLogo from '../../assets/argentBankLogo.png'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userLogoff } from '../../features/login/loginSlice'
-import { getFirstName } from '../../config/profileManager'
-import { useState } from 'react'
 
 /**
          * Header component
@@ -18,10 +16,6 @@ function Header() {
 
   const logged = useSelector((state)=>state.login.isLoggedBool)
   const name = useSelector((state)=>state.profile.firstName)
-  // let name
-  // if (logged){
-  //   name = getFirstName()
-  // }
 
   function Logout () {
     

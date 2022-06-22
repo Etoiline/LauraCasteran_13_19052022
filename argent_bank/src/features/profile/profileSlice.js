@@ -21,12 +21,9 @@ export const profileSlice = createSlice({
     userProfile: (state, action) => {
       const data = action.payload
       console.log(data)
-      //console.log('dataslice', action)
       setFirstName(data.firstName)
       setLastName(data.lastName)
       state.email = data.email
-      // state.firstName = data.firstName
-      // state.lastName = data.lastName
       state.firstName = getFirstName()
       state.lastName = getLastName()
       state.createdAt = data.createdAt
