@@ -68,6 +68,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
+          type: string
           description: Attach Bearer JWT token
           required: true
       produces:
@@ -92,6 +93,7 @@ paths:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
+          type: string
           required: true
         - in: body
           name: body
@@ -131,32 +133,6 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/transactions/{id}:    
-    get:
-      tags:
-      - User Transactions
-      summary: fetch a single transaction
-      description: Fetch informations about a single transaction
-      parameters:
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT
-        type: string
-        required: true
-      - in: path
-        name: id
-        description: The id that needs to be fetched
-        required: true
-        type: integer
-      responses:
-        '200':
-          description: Transaction retrieved successully
-          schema:
-            $ref: "#/definitions/Transaction"
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
     post:
       security:
         - Bearer: []
@@ -181,6 +157,32 @@ paths:
       responses:
         '200':
           description: Transaction added successully
+          schema:
+            $ref: "#/definitions/Transaction"
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transactions/{id}:    
+    get:
+      tags:
+      - User Transactions
+      summary: fetch a single transaction
+      description: Fetch informations about a single transaction
+      parameters:
+      - in: header
+        name: Authorization
+        description: Attach Bearer JWT
+        type: string
+        required: true
+      - in: path
+        name: id
+        description: The id that needs to be fetched
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Transaction retrieved successully
           schema:
             $ref: "#/definitions/Transaction"
         '400':

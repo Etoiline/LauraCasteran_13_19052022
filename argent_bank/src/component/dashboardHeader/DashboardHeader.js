@@ -18,8 +18,6 @@ function DashboardHeader() {
   const name = useSelector((state)=>state.profile.firstName)
   const lastname = useSelector((state)=>state.profile.lastName)
 
-  // const [username, setUsername] = useState(name)
-  //const [userLastName, setUserLastName] = useState(lastname)
   const usernameInput = useRef()
   const userLastNameInput = useRef()
 
